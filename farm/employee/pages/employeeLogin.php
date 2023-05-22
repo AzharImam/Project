@@ -43,7 +43,7 @@ height: 100%;
   <!-- Image and text -->
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="../../template/index.php">
-    <img src="../../template/images/logo.png" width="250" class="d-inline-block align-top" alt="">
+    <img src="../../template/images/logo.png" width="250" class="d-inline-block align-top ms-5" alt="">
   </a>
 </nav>
 <section class="vh-100">

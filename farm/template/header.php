@@ -1,5 +1,6 @@
 <?php
 require_once("../config.php");
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +33,8 @@ require_once("../config.php");
       }
 
       .dropdown-menu {
-         max-height: 200px;
+         max-width: 210px;
+         max-height: 175px;
          overflow-y: scroll;
       }
    </style>
@@ -99,7 +101,6 @@ require_once("../config.php");
                      </div>
                   </li>
 
-
                   <li class="nav-item">
                      <a class="nav-link" href="product.php">Products</a>
                   </li>
@@ -107,79 +108,52 @@ require_once("../config.php");
                   <li class="nav-item">
                      <a class="nav-link" href="contact.php">Contact</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item mr-1">
                      <a class="nav-link" href="#">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                           xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029"
-                           style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
-                           <g>
-                              <g>
-                                 <path
-                                    d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                                          c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                              </g>
-                           </g>
-                           <g>
-                              <g>
-                                 <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                                          C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                                          c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                                          C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                              </g>
-                           </g>
-                           <g>
-                              <g>
-                                 <path
-                                    d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                                          c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                              </g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                           <g>
-                           </g>
-                        </svg>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="position-absolute top-0 translate-middle badge rounded-pill bg-warning">
+                           <?php if (isset($_SESSION["mycart"])) {
+                              echo count($_SESSION["mycart"]);
+                           } else {
+                              echo 0;
+                           }
+                           ?>
+                        </span>
                      </a>
                   </li>
-                  <form class="form-inline">
-                     <a href="../userForm/index.php">
-                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="button">
-                           <i class="fa fa-user" aria-hidden="true"></i>
-                        </button>
-                     </a>
-                  </form>
+                  <div class="dropdown mr-4">
+                     <?php
+                     if (isset($_SESSION['uname']) && !empty($_SESSION['uname'])) { ?>
+                        <a class="btn btn-outline-warning btn-sm mb-0 me-3 dropdown-toggle" href="#" id="navbarDropdown"
+                           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <span class="font-weight-bold" style="color:black;">
+                              <?php echo $_SESSION['uname']; ?>
+                           </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" href="#">Profile Management</a></li>
+                           <li><a class="dropdown-item" href="#">Another action</a></li>
+                           <li><a class="dropdown-item" href="../userForm/logout.php">Logout</a></li>
+                           <li><a class="dropdown-item" href="#">Something else here</a></li>
+                           <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                        <?php
+                        // session_destroy();
+                     } else { ?>
+                        <li class="nav-item">
+                           <a href="../userForm/index.php" class="nav-link">
+                              <i class="fa fa-user" aria-hidden="true"></i>
+                           </a>
+                        </li>
+                        <?php
+                     }
+                     ?>
+                  </div>
                </ul>
             </div>
          </nav>
       </div>
    </header>
-
 </body>
 
 </html>

@@ -11,6 +11,10 @@
     <?php
     include('header.php');
     error_reporting(0);
+    session_start();
+    if (!isset($_SESSION['mycart'])) {
+      $_SESSION['mycart'] = array();
+    }
     ?>
 <div class="hero_area">
         
@@ -30,6 +34,16 @@
       <!-- product section -->
       <section class="product_section layout_padding">
          <div class="container">
+            <?php 
+               if (isset($_SESSION['msg'])) {   
+            ?>
+               <div class="alert alert-success" role="alertdialog">
+                  <?php echo $_SESSION['msg']; ?>
+               </div>
+               <?php
+                  unset($_SESSION['msg']);
+                  }
+               ?>
             <div class="heading_container heading_center">
                <h2>
                   Our <span>products</span>
@@ -56,15 +70,12 @@
                          <i class="fa fa-search" aria-hidden="true"></i>
                      </button>
                   </div>
-               
+
             </div>
             </form>
            </div>
 
            </center>
-
-
-
 
             <div class="row">
                <?php
@@ -106,11 +117,11 @@
                            <div class="box h-100">
                               <div class="option_container">
                                  <div class="options">
-                                    <a href="" class="option1">
+                                    <a href="addtocart.php?product_id=<?php echo $convert_array[0]; ?>" class="option1">
                                        Add to cart
                                     </a>
                                     <a href="" class="option2">
-                                    Buy Now
+                                       Buy Now
                                     </a>
                                  </div>
                               </div>

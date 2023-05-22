@@ -7,5 +7,5 @@
         array_push($_SESSION['mycart'] , $id);
         $_SESSION['msg'] = "Product Added";
     }
-     
+    header("location: product.php")
 ?>
